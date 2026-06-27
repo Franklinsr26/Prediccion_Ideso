@@ -987,7 +987,14 @@ app = FastAPI(
 # CORS habilitado para cualquier origen (permite conexión desde el frontend)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+    "*",
+    "null",
+    "https://franklinsr26.github.io",
+    "https://prediccionbursatilg3.github.io",
+    "http://localhost",
+    "http://127.0.0.1"
+],
     allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
