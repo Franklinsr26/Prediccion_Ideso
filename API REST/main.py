@@ -983,22 +983,7 @@ app = FastAPI(
     docs_url="/docs",
     redoc_url="/redoc",
 )
-from fastapi import Request
-from fastapi.responses import Response
 
-@app.middleware("http")
-async def add_cors_headers(request: Request, call_next):
-    if request.method == "OPTIONS":
-        response = Response()
-        response.headers["Access-Control-Allow-Origin"] = "*"
-        response.headers["Access-Control-Allow-Methods"] = "*"
-        response.headers["Access-Control-Allow-Headers"] = "*"
-        return response
-    response = await call_next(request)
-    response.headers["Access-Control-Allow-Origin"] = "*"
-    response.headers["Access-Control-Allow-Headers"] = "*"
-    response.headers["Access-Control-Allow-Methods"] = "*"
-    return response
 # CORS habilitado para cualquier origen (permite conexión desde el frontend)
 app.add_middleware(
     CORSMiddleware,
